@@ -11,7 +11,14 @@ const EmailVerify = () => {
   if (!location.state) {
     navigate("/signup/register"); 
   }
-
+  
+const EmailVerify = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  // Then add your navigation logic
+  if (!location.state) {
+    navigate("/signup/register"); // Redirect to register if state is missing
+  }
   const { email } = location.state || {};
   const [timer, setTimer] = useState(60);
   const [isResending, setIsResending] = useState(false);
@@ -28,6 +35,7 @@ const EmailVerify = () => {
     if (timer > 0) return;
     setIsResending(true);
     try {
+      
       const response = await fetch(
         "http://localhost:4000/api/v1/user/resend-verify-email",
         {
@@ -44,6 +52,13 @@ const EmailVerify = () => {
 
       if (response.ok) {
         toastr.success("New verification Email sent successfully!", "Success");
+
+      //resend otp function
+      const data = await response.json();
+
+      if (response.ok) {
+        toastr.success("New OTP sent successfully!", "Success");
+
         setTimer(60);
       } else {
         toastr.error(data.message || "Failed to resend OTP", "Error");

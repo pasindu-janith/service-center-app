@@ -5,6 +5,12 @@ import "./css/styles.css";
 import toastr from "toastr";
 
 const Login = () => {
+  // const [passwordVisible, setPasswordVisible] = useState(false);
+
+  // const togglePasswordVisibility = () => {
+  //   setPasswordVisible(!passwordVisible);
+  // };
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -23,6 +29,8 @@ const Login = () => {
         const encodedValue = parts.pop().split(";").shift();
         return decodeURIComponent(encodedValue);
       }
+      if (parts.length === 2) return parts.pop().split(";").shift();
+
       return null;
     };
 
@@ -30,6 +38,7 @@ const Login = () => {
     if (remembered) {
       setFormData({
         email: decodeURIComponent(remembered),
+        email: remembered.email,
       });
       setRememberMe(true);
     }
@@ -98,6 +107,9 @@ const Login = () => {
         throw new Error(data.message || "Login failed");
       }
       if (data.token) {
+        // Store token in localStorage (or sessionStorage for better security)
+        localStorage.setItem("authToken", data.token);
+
         // Optionally store user info
         localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -194,6 +206,9 @@ const Login = () => {
                 <Link to="/login/forgot-password" className="text-decoration-none">
                   Forgot Password?
                 </Link>
+                <a href="#" className="text-decoration-none">
+                  Forgot Password?
+                </a>
               </div>
 
               {/* Submit Button */}
@@ -214,6 +229,7 @@ const Login = () => {
               </Link>
             </div>
             {/* <div className="d-flex align-items-center mb-3">
+            <div className="d-flex align-items-center mb-3">
               <div className="border-bottom flex-grow-1"></div>
               <span className="px-3 text-muted">or</span>
               <div className="border-bottom flex-grow-1"></div>
@@ -226,6 +242,7 @@ const Login = () => {
               />
               &nbsp;&nbsp;Login with Google
             </button> */}
+            </button>
           </div>
         </div>
       </div>

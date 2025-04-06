@@ -84,6 +84,9 @@ const RegisterForm = () => {
       }
 
       toastr.success("Registration successful! Verify your mobile number to continue.");
+
+      toastr.success("Registration successful! You can now log in.");
+
       navigate("/signup/otpverify", {
         state: { mobile: formData.mobile, email: formData.email },
       });

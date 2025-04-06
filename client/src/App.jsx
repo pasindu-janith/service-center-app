@@ -2,7 +2,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Services from "./Pages/Services";
 import SignUp from "./Pages/SignUp";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Dashboard from "./Pages/UserPanel";
@@ -26,6 +26,9 @@ toastr.options = {
   showMethod: "fadeIn",
   hideMethod: "fadeOut",
 };
+import "bootstrap/dist/css/bootstrap.min.css";  
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Dashboard from "./Pages/UserPanel";
 
 function App() {
   return (

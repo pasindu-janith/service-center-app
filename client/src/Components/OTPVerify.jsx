@@ -12,11 +12,15 @@ const OTPVerify = () => {
   const [isResending, setIsResending] = useState(false);
   
   const navigate = useNavigate();
+
   const location = useLocation();
   if (!location.state) {
     navigate("/signup/register"); // Redirect to register if state is missing
   }
   const { mobile, email } = location.state || {};
+
+  const navigate = useNavigate();
+
   // Reference for input fields
   const inputRefs = Array(6)
     .fill(0)
