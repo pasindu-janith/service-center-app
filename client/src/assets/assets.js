@@ -41,8 +41,6 @@ import signup from "../images/signup.jpg";
 import login from "../images/login.avif";
 import profile from "../images/profile.avif";
 import toyota from "../images/toyota.jpg";
-import successicon from "../images/successicon.png";
-import erroricon from "../images/erroricon.png";
 
 //icon files
 import smsicon from "../images/smsicon.png";
@@ -99,9 +97,6 @@ const images = {
   emailicon: emailicon,
 
   toyota: toyota,
-
-  successicon: successicon,
-  erroricon: erroricon,
 };
 
 export default images;

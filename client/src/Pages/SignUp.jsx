@@ -9,9 +9,6 @@ import toastr from "toastr";
 import UserReister from "./../Components/UserRegister";
 import OTPVerify from "../Components/OTPVerify";
 import EmailVerify from "../Components/EmailVerify";
-import EmailVerified from "../Components/EmailVerified";
-
-// Configure toastr options
 // Configure toastr options
 toastr.options = {
   closeButton: true,
@@ -67,9 +64,6 @@ const SignUp = () => {
               <Route path="/register" element={<UserReister />} />
               <Route path="/otpverify" element={<OTPVerify />} />
               <Route path="/email-verify" element={<EmailVerify />} />
-
-              <Route path="/emailactivation" element={<EmailVerified />} />
-
             </Routes>
           </div>
         </div>
