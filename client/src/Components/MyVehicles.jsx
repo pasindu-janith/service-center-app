@@ -10,6 +10,8 @@ const MyVehicle = () => {
       className="container pt-3 vh-100"
       style={{ backgroundColor: "#f4f4f4" }}
     >
+      <h2 className="mb-3">My Vehicles</h2>
+
       <div className="row">
         <div className="col-md-3">
           <div className="card">
@@ -47,6 +49,7 @@ const MyVehicle = () => {
         <div className="col-md-3">
           <div className="card h-100" style={{ border: "1px dashed grey" }}>
             <div className="card-body d-flex justify-content-center align-items-center">
+              <Link to="/myaccount/add-vehicle" className="text-decoration-none">
               <Link to="/myvehicle/add" className="text-decoration-none">
                 <h1 className="text-center">+</h1>
                 <p className="text-center">Add Vehicle</p>

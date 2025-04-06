@@ -25,18 +25,47 @@ const Login = () => {
     const getCookie = (name) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        const encodedValue = parts.pop().split(";").shift();
+        return decodeURIComponent(encodedValue);
+      }
       if (parts.length === 2) return parts.pop().split(";").shift();
+
       return null;
     };
 
     const remembered = getCookie("rememberUser");
     if (remembered) {
       setFormData({
+        email: decodeURIComponent(remembered),
         email: remembered.email,
       });
       setRememberMe(true);
     }
   }, []);
+
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        // This endpoint should verify the token in the cookie
+        const response = await fetch(
+          "http://localhost:4000/api/v1/user/authUser",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        if (response.ok) {
+          navigate("/myaccount/dashboard");
+        }
+      } catch (error) {
+        // Token invalid or expired - stay on login page
+        console.log(error);
+      }
+    };
+    
+    verifyToken();
+  });
 
   // Handle input changes
   const handleChange = (e) => {
@@ -174,6 +203,9 @@ const Login = () => {
                     Remember Me
                   </label>
                 </div>
+                <Link to="/login/forgot-password" className="text-decoration-none">
+                  Forgot Password?
+                </Link>
                 <a href="#" className="text-decoration-none">
                   Forgot Password?
                 </a>
@@ -196,6 +228,7 @@ const Login = () => {
                 Sign Up
               </Link>
             </div>
+            {/* <div className="d-flex align-items-center mb-3">
             <div className="d-flex align-items-center mb-3">
               <div className="border-bottom flex-grow-1"></div>
               <span className="px-3 text-muted">or</span>
@@ -208,6 +241,7 @@ const Login = () => {
                 style={{ width: "20px", height: "20px" }}
               />
               &nbsp;&nbsp;Login with Google
+            </button> */}
             </button>
           </div>
         </div>

@@ -2,6 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import images from "../assets/assets";
 import "./styles/forms.css";
+import toastr from "toastr";
+
+const EmailVerify = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  if (!location.state) {
+    navigate("/signup/register"); 
+  }
+  
 const EmailVerify = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,11 +35,30 @@ const EmailVerify = () => {
     if (timer > 0) return;
     setIsResending(true);
     try {
+      
+      const response = await fetch(
+        "http://localhost:4000/api/v1/user/resend-verify-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        toastr.success("New verification Email sent successfully!", "Success");
+
       //resend otp function
       const data = await response.json();
 
       if (response.ok) {
         toastr.success("New OTP sent successfully!", "Success");
+
         setTimer(60);
       } else {
         toastr.error(data.message || "Failed to resend OTP", "Error");

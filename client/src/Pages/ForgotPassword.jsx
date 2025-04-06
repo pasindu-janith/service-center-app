@@ -1,38 +1,15 @@
-import { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import images from "../assets/assets";
 import "./css/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "toastr/build/toastr.min.css";
-import toastr from "toastr";
-import UserReister from "./../Components/UserRegister";
-import OTPVerify from "../Components/OTPVerify";
-import EmailVerify from "../Components/EmailVerify";
-import EmailVerified from "../Components/EmailVerified";
+import PasswordForgot from "../Components/PasswordForgot";
+import PasswordReset from "../Components/PasswordReset";
 
 // Configure toastr options
-// Configure toastr options
-toastr.options = {
-  closeButton: true,
-  debug: false,
-  newestOnTop: false,
-  progressBar: true,
-  positionClass: "toast-top-right",
-  preventDuplicates: false,
-  onclick: null,
-  showDuration: "300",
-  hideDuration: "1000",
-  timeOut: "5000",
-  extendedTimeOut: "1000",
-  showEasing: "swing",
-  hideEasing: "linear",
-  showMethod: "fadeIn",
-  hideMethod: "fadeOut",
-};
 
-const SignUp = () => {
-
+const ForgotPassword = () => {
   return (
     <div className="container-fluid">
       <div className="row">
@@ -64,12 +41,8 @@ const SignUp = () => {
               />
             </Link>
             <Routes>
-              <Route path="/register" element={<UserReister />} />
-              <Route path="/otpverify" element={<OTPVerify />} />
-              <Route path="/email-verify" element={<EmailVerify />} />
-
-              <Route path="/emailactivation" element={<EmailVerified />} />
-
+              <Route path="/forgot-password" element={<PasswordForgot />} />
+              <Route path="/reset-password" element={<PasswordReset />} />
             </Routes>
           </div>
         </div>
@@ -78,4 +51,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ForgotPassword;
