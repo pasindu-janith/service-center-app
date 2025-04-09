@@ -1,13 +1,13 @@
 import { Router } from "express";
+import { adminLogin } from "./controller.mjs";
 
 //User functions here
 
 const adminRouter = Router();
 
-//login
+adminRouter.post("/login", adminLogin);
 
 
 //register
-
 
 export default adminRouter;
